@@ -1,0 +1,15 @@
+tool.uv.package = true
+
+[project]
+name = "truss"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "numpy>=2.2.2",
+    "typer>=0.15.1",
+]
+
+[project.scripts]
+truss = "truss.main:entry"
