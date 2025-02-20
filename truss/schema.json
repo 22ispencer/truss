@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "properties": {
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "integer"
+          },
+          "y": {
+            "type": "integer"
+          },
+          "supports": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "boolean"
+              },
+              "y": {
+                "type": "boolean"
+              },
+              "xy": {
+                "type": "boolean"
+              }
+            }
+          },
+          "force": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              }
+            },
+            "required": ["x", "y"]
+          }
+        },
+        "required": ["x", "y"]
+      }
+    },
+    "members": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "uniqueItems": true,
+        "items": {
+          "type": "number",
+          "multipleOf": 1,
+          "minimum": 0
+        }
+      }
+    }
+  },
+  "required": ["nodes", "members"],
+  "title": "schema"
+}

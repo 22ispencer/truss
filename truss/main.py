@@ -1,4 +1,4 @@
-from typing_extensions import Annotated
+from typing import Annotated
 import typer
 
 app = typer.Typer()
