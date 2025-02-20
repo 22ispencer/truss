@@ -31,8 +31,6 @@ def plot(data: Truss):
         y = [data["nodes"][node]["y"] for node in member]
         ax.plot(x, y, "-b")
 
-    print(mean_member_len, mean_force_magnitude)
-
     x = [node["x"] for node in data["nodes"]]
     y = [node["y"] for node in data["nodes"]]
 

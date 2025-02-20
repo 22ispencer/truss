@@ -1,21 +1,25 @@
-import truss.json
-import truss.main
+import truss
 import jsonschema.exceptions
-import pytest
+from pytest import raises, approx
 
 
-def test_valid():
+def test_soln_a():
     with open("tests/ex_a.json") as f:
-        truss.json.validate(f)
+        data = truss.json.validate(f)
+
+    soln = truss.math.solve(data)
+
+    assert soln[0] == approx(195000.0)
+    assert soln[3] == approx(-169705.62748477142)
 
 
 def test_out_of_range():
-    with pytest.raises(truss.json.TrussValidationException):
+    with raises(truss.json.TrussValidationException):
         with open("tests/out_of_range.json") as f:
             truss.json.validate(f)
 
 
 def test_invalid():
-    with pytest.raises(jsonschema.exceptions.ValidationError):
+    with raises(jsonschema.exceptions.ValidationError):
         with open("tests/invalid.json") as f:
             truss.json.validate(f)
