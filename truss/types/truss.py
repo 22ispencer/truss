@@ -1,10 +1,10 @@
-from typing import TypedDict
+from typing import TypedDict, NotRequired
 
 
 class NodeSupport(TypedDict):
-    x: bool | None
-    y: bool | None
-    xy: bool | None
+    x: NotRequired[bool]
+    y: NotRequired[bool]
+    xy: NotRequired[bool]
 
 
 class NodeForce(TypedDict):
@@ -15,8 +15,8 @@ class NodeForce(TypedDict):
 class Node(TypedDict):
     x: float
     y: float
-    supports: NodeSupport | None
-    force: NodeForce | None
+    supports: NotRequired[NodeSupport]
+    force: NotRequired[NodeForce]
 
 
 class Truss(TypedDict):
