@@ -1,8 +1,6 @@
 from typing import Annotated
 import typer
-import truss.json
-import truss.graphics
-import truss.math
+import truss
 
 app = typer.Typer()
 
@@ -31,7 +29,7 @@ def file(
 
 @app.command()
 def repl():
-    print("repl")
+    truss.repl.main_loop()
 
 
 def entry():
