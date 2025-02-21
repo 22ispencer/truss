@@ -61,10 +61,13 @@ def solve(data: Truss):
             ] = 1
         # End adding supports
 
-        # Start setup force sum
-        if "force" in node:
-            right[2 * i] = node["force"]["x"]
-            right[2 * i + 1] = node["force"]["y"]
+    # Start force sum
+    for force in data["forces"]:
+        if force["x"]:
+            right[2 * force["node"]] = force["x"]
+        if force["y"]:
+            right[2 * force["node"] + 1] = force["y"]
+    # End force sum
 
     soln = np.linalg.solve(left, right)
 

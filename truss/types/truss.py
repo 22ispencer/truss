@@ -6,7 +6,8 @@ from typing import TypedDict, NotRequired
 Reaction = TypedDict("Reaction", {"node": int, "type": str})
 
 
-class NodeForce(TypedDict):
+class Force(TypedDict):
+    node: int
     x: float
     y: float
 
@@ -14,10 +15,10 @@ class NodeForce(TypedDict):
 class Node(TypedDict):
     x: float
     y: float
-    force: NotRequired[NodeForce]
 
 
 class Truss(TypedDict):
     nodes: list[Node]
     members: list[list[int]]
     reactions: list[Reaction]
+    forces: list[Force]

@@ -11,18 +11,6 @@
           },
           "y": {
             "type": "integer"
-          },
-          "force": {
-            "type": "object",
-            "properties": {
-              "x": {
-                "type": "number"
-              },
-              "y": {
-                "type": "number"
-              }
-            },
-            "required": ["x", "y"]
           }
         },
         "required": ["x", "y"]
@@ -53,8 +41,25 @@
           }
         }
       }
+    },
+    "forces": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "node": { "type": "number", "multipleOf": 1, "minimum": 0 },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          }
+        },
+        "required": ["x", "y"]
+      }
     }
   },
-  "required": ["nodes", "members", "reactions"],
+  "required": ["nodes", "members", "reactions", "forces"],
   "title": "schema"
 }
