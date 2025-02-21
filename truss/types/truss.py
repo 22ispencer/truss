@@ -1,10 +1,9 @@
+from enum import Enum
 from typing import TypedDict, NotRequired
 
 
-class NodeSupport(TypedDict):
-    x: NotRequired[bool]
-    y: NotRequired[bool]
-    xy: NotRequired[bool]
+# alternative syntax to get around `type` keyword
+Reaction = TypedDict("Reaction", {"node": int, "type": str})
 
 
 class NodeForce(TypedDict):
@@ -15,10 +14,10 @@ class NodeForce(TypedDict):
 class Node(TypedDict):
     x: float
     y: float
-    supports: NotRequired[NodeSupport]
     force: NotRequired[NodeForce]
 
 
 class Truss(TypedDict):
     nodes: list[Node]
     members: list[list[int]]
+    reactions: list[Reaction]

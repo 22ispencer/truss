@@ -17,17 +17,7 @@ def solve(data: Truss):
     └                      ┘└      ┘   └
     """
 
-    supports = [
-        (i, "x")
-        for i, node in enumerate(data["nodes"])
-        if "supports" in node and "x" in node["supports"] and node["supports"]["x"]
-    ] + [
-        (i, "y")
-        for i, node in enumerate(data["nodes"])
-        if "supports" in node and "y" in node["supports"] and node["supports"]["y"]
-    ]
-
-    if len(data["members"]) + len(supports) != 2 * len(data["nodes"]):
+    if len(data["members"]) + len(data["reactions"]) != 2 * len(data["nodes"]):
         raise SolvingException(
             "Unfinished truss structures, members + reactions must equal 2 * joints"
         )
@@ -57,10 +47,18 @@ def solve(data: Truss):
         # End adding each 2-force member
 
         # Start adding supports
-        if (i, "x") in supports:
-            left[2 * i, len(data["members"]) + supports.index((i, "x"))] = 1
-        if (i, "y") in supports:
-            left[2 * i + 1, len(data["members"]) + supports.index((i, "y"))] = 1
+        if {"node": i, "type": "x"} in data["reactions"]:
+            left[
+                2 * i,
+                len(data["members"])
+                + data["reactions"].index({"node": i, "type": "x"}),
+            ] = 1
+        if {"node": i, "type": "y"} in data["reactions"]:
+            left[
+                2 * i + 1,
+                len(data["members"])
+                + data["reactions"].index({"node": i, "type": "y"}),
+            ] = 1
         # End adding supports
 
         # Start setup force sum
