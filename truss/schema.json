@@ -12,20 +12,6 @@
           "y": {
             "type": "integer"
           },
-          "supports": {
-            "type": "object",
-            "properties": {
-              "x": {
-                "type": "boolean"
-              },
-              "y": {
-                "type": "boolean"
-              },
-              "xy": {
-                "type": "boolean"
-              }
-            }
-          },
           "force": {
             "type": "object",
             "properties": {
@@ -55,8 +41,20 @@
           "minimum": 0
         }
       }
+    },
+    "reactions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "node": { "type": "number", "multipleOf": 1, "minimum": 0 },
+          "type": {
+            "enum": ["x", "y"]
+          }
+        }
+      }
     }
   },
-  "required": ["nodes", "members"],
+  "required": ["nodes", "members", "reactions"],
   "title": "schema"
 }
