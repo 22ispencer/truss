@@ -24,9 +24,9 @@ def solve(data: Truss):
 
     dim = 2 * len(data["nodes"])
 
-    # each row in `left` represents the sum equations in the x, then y direction.
-    # each column represents first each member, then each support reaction.
-    # the matrix is the coefficients showing how much the column influences the equation per say
+    # Each row in `left` represents the sum equations in the x, then y direction.
+    # Each column represents first each member, then each support reaction.
+    # The matrix is the coefficients showing how much the column influences the equation per say
     # for example a 45 diagonal beam would only influence the x by cos(45) amount
     left = np.zeros((dim, dim))
     right = np.zeros(dim)
@@ -40,7 +40,7 @@ def solve(data: Truss):
 
             dx = other["x"] - node["x"]
             dy = other["y"] - node["y"]
-            d = np.hypot(dx, dy)
+            d: float = np.hypot(dx, dy)
 
             left[2 * i, j] = dx / d
             left[2 * i + 1, j] = dy / d
