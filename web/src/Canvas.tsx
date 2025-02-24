@@ -35,10 +35,14 @@ function Canvas() {
       className="h-full w-full"
       onWheel={(e) => {
         console.log(e.deltaY);
-        setScale(scale * (1 + e.deltaY / 1000));
+        setScale(scale * (1 - e.deltaY / 1000));
       }}
       onMouseDown={(e) => {
-        setDragStart({ x: e.clientX, y: e.clientY });
+        const dpr = window.devicePixelRatio || 1;
+        setDragStart({
+          x: e.clientX - offsetX / dpr,
+          y: e.clientY - offsetY / dpr,
+        });
         setIsDragging(!isDragging);
       }}
       onMouseUp={() => {
